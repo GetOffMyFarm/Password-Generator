@@ -18,19 +18,19 @@ function randomString() {
 }
 //Function that runs once the page is opened.
 function generatePassword() {
-  //Assigns user prompts to variables so their value is stored.
-  passwordLength = prompt("What's the password length? (Between 8-128 characters)");
-  var isLowerCase = confirm("Should lower case characters be included?");
-  var isUpperCase = confirm("Should upper case characters be included?");
-  var ifNumbers = confirm("Should numbers be included?");
-  var specialCharacters = confirm("Should it include special characters?");
+  //Assigns form values to variables so their value is stored.
+  passwordLength = document.getElementById("pLength").value;
+  var isLowerCase = document.getElementById("lowerCase").checked;
+  var isUpperCase = document.getElementById("upperCase").checked;
+  var ifNumbers = document.getElementById("numbers").checked;
+  var specialCharacters = document.getElementById("specialCharacters").checked;
   //reassigns newVariable to original blank value so that when the user hits the Generate button again the value is reset.
   newVariable = "";
   
   //Ensures criteria for length of password is honored, otherwise process restarts.
   if (passwordLength < 8 || passwordLength > 128) {
     alert("Password must be between 8 and 128 characters!");
-    generatePassword();
+    return "";
   }
   //Adds the different character types to newVariable based on what the user input, newVariable is what we'll draw our random string from.
   if (isLowerCase) {
@@ -51,7 +51,7 @@ function generatePassword() {
   //Ensures process restarts if user does not select any criteria.
   if (isLowerCase == false && isUpperCase == false && ifNumbers == false && specialCharacters == false) {
     alert("You must select at least one character type in order to generate a password!");
-    generatePassword();
+    return "";
   }
   //final input back to user, variables dependent on user input.
   return randomString();

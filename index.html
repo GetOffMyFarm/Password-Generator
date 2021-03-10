@@ -12,22 +12,37 @@
       <header>
         <h1>Password Generator</h1>
       </header>
-      <div class="card">
-        <div class="card-header">
+      <main class="card">
+        <section class="card-header">
           <h2>Generate a Password</h2>
-        </div>
-        <div class="card-body">
+        </section>
+        <section class="card-body">
           <textarea
             readonly
             id="password"
             placeholder="Your Secure Password"
             aria-label="Generated Password"
           ></textarea>
-        </div>
-        <div class="card-footer">
+        </section>
+        <!--Added a form to select criteria from rather than alerts, looks much better.-->
+        <section class="card-form">
+          <form>
+            <label for="passwordLength">Password Length:</label>
+            <input type="number" id="pLength" name="pLength"><br>
+            <input type="checkbox" id="lowerCase" name="lowerCase" value="isLowerCase">
+            <label for="lowerCase"> Include lower case letters</label><br>
+            <input type="checkbox" id="upperCase" name="upperCase" value="isUpperCase">
+            <label for="upperCase"> Include upper case letters</label><br>
+            <input type="checkbox" id="numbers" name="numbers" value="ifNumbers">
+            <label for="numbers"> Include numbers</label><br>
+            <input type="checkbox" id="specialCharacters" name="specialCharacters" value="specialCharacters">
+            <label for="specialCharacters"> Include special characters</label>
+          </form>
+        </section>
+        <section class="card-footer">
           <button id="generate" class="btn">Generate Password</button>
-        </div>
-      </div>
+        </section>
+      </main>
     </div>
     <script src="script.js"></script>
   </body>

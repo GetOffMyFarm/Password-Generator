@@ -27,7 +27,7 @@ function generatePassword() {
   //reassigns newVariable to original blank value so that when the user hits the Generate button again the value is reset.
   newVariable = "";
   
-  //Ensures criteria for length of password is honored, otherwise process restarts.
+  //Ensures criteria for length of password is honored, otherwise process ends.
   if (passwordLength < 8 || passwordLength > 128) {
     alert("Password must be between 8 and 128 characters!");
     return "";
@@ -48,7 +48,7 @@ function generatePassword() {
   if (specialCharacters) {
     newVariable += special_chars;
   }
-  //Ensures process restarts if user does not select any criteria.
+  //Ensures process ends if user does not select any criteria.
   if (isLowerCase == false && isUpperCase == false && ifNumbers == false && specialCharacters == false) {
     alert("You must select at least one character type in order to generate a password!");
     return "";

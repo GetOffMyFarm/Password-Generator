@@ -1,32 +1,54 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
-var lower_chars = "abcdefghijklmnopqrstuvwxyz".split();
-var upper_chars = "ABCDEFGHIJKLMNOPQRSTuVWXYZ".split();
-var special_chars = "!@#$%&*?/:;]}[{\|".split();
-var nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
+var lower_chars = "abcdefghijklmnopqrstuvwxyz";
+var upper_chars = "ABCDEFGHIJKLMNOPQRSTuVWXYZ";
+var special_chars = "!@#$%&*?:;";
+var nums = "1234567890";
+var newVariable = "";
+var passwordLength = 0;
+function randomString() {
+  var pwd = "";
+  for (var i = 0; i < passwordLength; i++) {
+  pwd += newVariable.charAt(Math.floor(Math.random() * newVariable.length));
+  }
+  return pwd;
+}
 
 function generatePassword() {
-  var passwordLength = prompt("What's the password length? (Between 8-128 characters)");
+  passwordLength = prompt("What's the password length? (Between 8-128 characters)");
   var isLowerCase = confirm("Should lower case characters be included?");
   var isUpperCase = confirm("Should upper case characters be included?");
   var ifNumbers = confirm("Should numbers be included?");
   var specialCharacters = confirm("Should it include special characters?");
-  var result = "";
-  function randomString(w, x, y, z) {
-  var pwd = "";
-  var newVariable = w + x + y + z;
-    for (var i = 0; i < passwordLength; i++) {
-    pwd += newVariable.charAt(Math.floor(Math.random() * newVariable.length));
-    }
-    return pwd;
+  newVariable = "";
+  
+  if (passwordLength < 8 || passwordLength > 128) {
+    alert("Password must be between 8 and 128 characters!");
+    generatePassword();
   }
-  if (isLowerCase && isUpperCase && ifNumbers && specialCharacters) {
-   result = randomString(isLowerCase, isUpperCase, ifNumbers, specialCharacters);
+
+  if (isLowerCase) {
+    newVariable += lower_chars.toLowerCase();
   }
-  else {
-    result = console.log("This still worked.");
+
+  if (isUpperCase) {
+    newVariable += upper_chars.toUpperCase();
   }
- return result;
+
+  if (ifNumbers) {
+    newVariable += nums;
+  }
+  
+  if (specialCharacters) {
+    newVariable += special_chars;
+  }
+
+  if (isLowerCase == false && isUpperCase == false && ifNumbers == false && specialCharacters == false) {
+    alert("You must select at least one character type in order to generate a password!");
+    generatePassword();
+  }
+  
+  return randomString();
 }
 
 

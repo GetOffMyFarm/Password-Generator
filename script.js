@@ -24,14 +24,26 @@ function generatePassword() {
   var isUpperCase = document.getElementById("upperCase").checked;
   var ifNumbers = document.getElementById("numbers").checked;
   var specialCharacters = document.getElementById("specialCharacters").checked;
+  var errorMessage = document.getElementById("errorMsg");
   //reassigns newVariable to original blank value so that when the user hits the Generate button again the value is reset.
   newVariable = "";
   
-  //Ensures criteria for length of password is honored, otherwise process ends.
+  //Ensures criteria for length of password is honored, otherwise process ends and error message is shown above "Generate" button.
   if (passwordLength < 8 || passwordLength > 128) {
-    alert("Password must be between 8 and 128 characters!");
+    errorMessage.textContent = "Password must be between 8 and 128 characters!";
     return "";
   }
+  //Ensures process ends if user does not select any criteria and error message is shown above "Generate" button.
+  else if (isLowerCase == false && isUpperCase == false && ifNumbers == false && specialCharacters == false) {
+    errorMessage.textContent = "You must select at least one character type in order to generate a password!";
+    return "";
+  }
+  else {
+    errorMessage.textContent = "";
+  }
+
+
+
   //Adds the different character types to newVariable based on what the user input, newVariable is what we'll draw our random string from.
   if (isLowerCase) {
     newVariable += lower_chars;
@@ -48,11 +60,6 @@ function generatePassword() {
   if (specialCharacters) {
     newVariable += special_chars;
   }
-  //Ensures process ends if user does not select any criteria.
-  if (isLowerCase == false && isUpperCase == false && ifNumbers == false && specialCharacters == false) {
-    alert("You must select at least one character type in order to generate a password!");
-    return "";
-  }
   //final input back to user, variables dependent on user input.
   return randomString();
 }
@@ -62,9 +69,8 @@ function generatePassword() {
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
-
+//Put conditional for transition here
   passwordText.value = password;
-
 }
 
 // Add event listener to generate button

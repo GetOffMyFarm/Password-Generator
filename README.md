@@ -26,4 +26,4 @@ THEN the password is either displayed in an alert or written to the page
 
 ## Launched Application
 
-The launched version of this application can be found at: https://getoffmyfarm.github.io/Password-Generator/
+The launched version of this application can be found at: https://gitoffmyfarm.github.io/Password-Generator/
